@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/mealbuddy?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&createDatabaseIfNotExist=true
+    username: root
+    password: "your-database-password"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      write-dates-as-timestamps: false
+
+app:
+  upload:
+    base-path: ${user.home}/mealbuddy/uploads
+  jwt:
+    secret: your-jwt-secret-key-base64-encoded
+    expiration: 604800000
+  ai:
+    api-key: your-ai-api-key
+    api-url: https://api.deepseek.com/v1/chat/completions
+    model: deepseek-chat
+    timeout: 10000
+    fallback-enabled: true
