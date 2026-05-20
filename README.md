@@ -71,13 +71,19 @@ CREATE DATABASE IF NOT EXISTS mealbuddy DEFAULT CHARACTER SET utf8mb4;
 
 ### 2. 配置应用
 
+> **注意：** `application.yml` 已被 `.gitignore` 排除，不会提交到仓库，避免泄露数据库密码和 API Key。首次克隆项目后，需要从模板创建配置文件。
+
 复制配置模板并填入实际值：
 
 ```bash
 cp backend/src/main/resources/application-template.yml backend/src/main/resources/application.yml
 ```
 
-编辑 `application.yml`，修改数据库密码、JWT 密钥和 AI API Key。
+编辑 `application.yml`，修改以下必填项：
+
+- `spring.datasource.password` — 数据库密码
+- `app.jwt.secret` — JWT 签名密钥
+- `app.ai.api-key` — DeepSeek API Key
 
 ### 3. 启动后端
 
